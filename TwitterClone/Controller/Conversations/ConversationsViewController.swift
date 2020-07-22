@@ -15,14 +15,15 @@ class ConversationsViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .yellow
-        
         self.setupView()
     }
     
     // MARK: - Helper Methods
     private func setupView() {
+        // Set background color
+        self.view.backgroundColor = .white
         
+        // Set navigation bar title
+        self.navigationItem.title = "Messages"
     }
 }

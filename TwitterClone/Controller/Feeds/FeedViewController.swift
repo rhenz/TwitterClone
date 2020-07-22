@@ -15,11 +15,17 @@ class FeedViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        self.setupView()
     }
     
     // MARK: - Helper Methods
     private func setupView() {
+        // Set background color
+        self.view.backgroundColor = .white
         
+        // Set twitter icon on navigation bar
+        let imageView = UIImageView(image: UIImage(named: "twitter_logo_blue"))
+        imageView.contentMode = .scaleAspectFit
+        navigationItem.titleView = imageView
     }
 }

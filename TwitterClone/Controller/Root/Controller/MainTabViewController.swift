@@ -11,6 +11,7 @@ import UIKit
 class MainTabViewController: UITabBarController {
     
     // MARK: - Properties
+    var actionButton: UIButton!
     
     // Tabs
     lazy var feedVC: UINavigationController = {
@@ -40,10 +41,31 @@ class MainTabViewController: UITabBarController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupView()
         self.configureTabBarControllers()
     }
     
     // MARK: - Helper Methods
+    func setupView() {
+        // Setup action button
+        self.actionButton = UIButton(type: .system)
+        self.actionButton.translatesAutoresizingMaskIntoConstraints = false
+        self.actionButton.tintColor = .white
+        self.actionButton.backgroundColor = .twitterBlue
+        self.actionButton.setImage(UIImage(named: "new_tweet"), for: .normal)
+        self.actionButton.layer.cornerRadius = 55 / 2
+        self.actionButton.addTarget(self, action: #selector(actionButtonTapped(_:)), for: .touchUpInside)
+        view.addSubview(actionButton)
+        
+        // Setup constraints
+        NSLayoutConstraint.activate([
+            self.actionButton.heightAnchor.constraint(equalToConstant: 55),
+            self.actionButton.widthAnchor.constraint(equalToConstant: 55),
+            self.actionButton.bottomAnchor.constraint(equalTo: self.tabBar.topAnchor, constant: -10),
+            self.actionButton.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor, constant: -10)
+        ])
+    }
+    
     func configureTabBarControllers() {
         self.viewControllers = [feedVC, exploreVC, notificationsVC, conversationsVC]
     }
@@ -54,5 +76,9 @@ class MainTabViewController: UITabBarController {
         navVC.navigationBar.barTintColor = .white
         return navVC
     }
-
+    
+    @objc
+    func actionButtonTapped(_ sender: UIButton) {
+        print("Button Tapped")
+    }
 }
