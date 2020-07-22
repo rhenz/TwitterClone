@@ -15,7 +15,7 @@ class FeedViewController: UIViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .green
     }
     
     // MARK: - Helper Methods

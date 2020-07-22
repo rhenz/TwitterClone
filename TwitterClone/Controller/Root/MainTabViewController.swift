@@ -13,39 +13,46 @@ class MainTabViewController: UITabBarController {
     // MARK: - Properties
     
     // Tabs
-    lazy var feedVC: FeedViewController = {
+    lazy var feedVC: UINavigationController = {
         let vc = FeedViewController()
-        vc.tabBarItem.image = UIImage(named: "home_unselected")
-        return vc
+        let navVC = self.addNavigationController(with: UIImage(named: "home_unselected"), rootViewController: vc)
+        return navVC
     }()
     
-    lazy var exploreVC: ExploreViewController = {
+    lazy var exploreVC: UINavigationController = {
         let vc = ExploreViewController()
-        vc.tabBarItem.image = UIImage(named: "search_unselected")
-        return vc
+        let navVC = self.addNavigationController(with: UIImage(named: "search_unselected"), rootViewController: vc)
+        return navVC
     }()
     
-    lazy var notificationsVC: NotificationsViewController = {
+    lazy var notificationsVC: UINavigationController = {
         let vc = NotificationsViewController()
-        vc.tabBarItem.image = UIImage(named: "notification_unselected")
-        return vc
+        let navVC = self.addNavigationController(with: UIImage(named: "notification_unselected"), rootViewController: vc)
+        return navVC
     }()
     
-    lazy var conversationsVC: ConversationsViewController = {
+    lazy var conversationsVC: UINavigationController = {
         let vc = ConversationsViewController()
-        vc.tabBarItem.image = UIImage(named: "conversation_unselected")
-        return vc
+        let navVC = self.addNavigationController(with: UIImage(named: "conversation_unselected"), rootViewController: vc)
+        return navVC
     }()
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configureViewControllers()
+        self.configureTabBarControllers()
     }
     
     // MARK: - Helper Methods
-    func configureViewControllers() {
+    func configureTabBarControllers() {
         self.viewControllers = [feedVC, exploreVC, notificationsVC, conversationsVC]
+    }
+    
+    func addNavigationController(with tabBarImage: UIImage?, rootViewController: UIViewController) -> UINavigationController {
+        let navVC = UINavigationController(rootViewController: rootViewController)
+        navVC.tabBarItem.image = tabBarImage
+        navVC.navigationBar.barTintColor = .white
+        return navVC
     }
 
 }
