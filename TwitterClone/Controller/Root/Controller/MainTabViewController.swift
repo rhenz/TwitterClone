@@ -77,8 +77,7 @@ class MainTabViewController: UITabBarController {
         return navVC
     }
     
-    @objc
-    func actionButtonTapped(_ sender: UIButton) {
+    @objc func actionButtonTapped(_ sender: UIButton) {
         print("Button Tapped")
     }
 }

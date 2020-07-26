@@ -14,13 +14,38 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xgk-Ev-Xvz">
+                                <rect key="frame" x="10" y="131" width="394" height="29"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U5M-kX-eJj">
+                                        <rect key="frame" x="0.0" y="0.0" width="33" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="33" id="Ou7-rT-lsT"/>
+                                            <constraint firstAttribute="height" constant="29" id="ncN-UG-PRe"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JcS-O1-oud">
+                                        <rect key="frame" x="43" y="0.0" width="351" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xgk-Ev-Xvz" secondAttribute="trailing" constant="10" id="1Fu-OQ-dHh"/>
+                            <constraint firstItem="xgk-Ev-Xvz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="5TT-ik-Tf4"/>
+                            <constraint firstItem="xgk-Ev-Xvz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="87" id="BCD-aZ-OZT"/>
+                            <constraint firstItem="xgk-Ev-Xvz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cyB-o4-GXQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="138"/>
+            <point key="canvasLocation" x="131.8840579710145" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>
