@@ -83,6 +83,7 @@ class InputTextView: UIView {
     
     private func addBottomBorder() {
         
+        // Choice of layer is good for efficiency, although be careful because they don't respond to Autolayout changes.
         let thickness: CGFloat = 2
         let bottomBorder = CALayer()
         bottomBorder.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: thickness)

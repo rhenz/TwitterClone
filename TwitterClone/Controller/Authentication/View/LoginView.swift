@@ -95,6 +95,9 @@ class LoginView: UIView {
     }()
     
     // MARK: - Handlers
+    // A more idiomatic implementation of button handlers would be to use the delegation pattern.
+    // Delegates (or even closure button handlers) can be overkill for simple buttons, but
+    // delegates are extremely helpful for complex views that you might ship in an SDK, for example.
     var didLoginButtonPressed: ((_ sender: UIButton) -> Void)?
     var didSignUpButtonPressed: ((_ sender: UIButton) -> Void)?
     

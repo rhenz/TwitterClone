@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
+    // Instead of using hard paddings, set the superview's directionalLayoutMargins and
+    // use the anchors in layoutMarginsGuide. To find out more,
+    // read UILayoutGuide: https://developer.apple.com/documentation/uikit/uilayoutguide
+    
+    // In general, all views have multiple layout guides. Layout guides are imaginary,
+    // non-rendered rectangles to which you can bind Autolayout constraints. See example:
+    // https://github.com/madcurious/iOSToolkit/blob/master/iOSToolkit/Extensions/UIView/UIView%2BEmbedding.swift
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
@@ -47,6 +56,9 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: height).isActive = true
         }
     }
+    
+    // I feel like the functions below should be in an NSLayoutConstraint extension, or better yet,
+    // in a separate object or struct that serves as a constraint builder.
     
     func center(inView view: UIView, yConstant: CGFloat? = 0) {
         translatesAutoresizingMaskIntoConstraints = false
