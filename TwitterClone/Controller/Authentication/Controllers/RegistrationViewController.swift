@@ -13,6 +13,8 @@ class RegistrationViewController: UIViewController {
     // MARK: - Properties
     private var registrationView = RegistrationView()
     
+    private let imagePicker = UIImagePickerController()
+    
     // MARK: - View Life Cycle
     override func loadView() {
         self.view = self.registrationView
@@ -31,17 +33,34 @@ class RegistrationViewController: UIViewController {
     // MARK: - Helper Methods
     func setupView() {
         self.view.backgroundColor = .twitterBlue
+        
+        self.imagePicker.delegate = self
+        self.imagePicker.allowsEditing = true
     }
     
     func setupButtonHandlers() {
         self.registrationView.didLoginButtonPressed = { sender in
-            print("Login Button Pressed")
-            
-            // pop
             self.navigationController?.popViewController(animated: true)
+        }
+        
+        self.registrationView.didProfilePicButtonPressed = { sender in
+            self.present(self.imagePicker, animated: true, completion: nil)
         }
     }
     
     // MARK: - Selectors
 
+}
+
+// MARK: - Image Picker Delegate
+extension RegistrationViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        guard let profileImage = info[.editedImage] as? UIImage else { return }
+        self.registrationView.setProfileImage(profileImage.withRenderingMode(.alwaysOriginal))
+        dismiss(animated: true, completion: nil)
+    }
 }

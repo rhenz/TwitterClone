@@ -22,6 +22,9 @@ class RegistrationView: UIView {
     }
     
     // MARK: - Properties
+    private var didSetProfileImageView: Bool = false
+    
+    // Views
     lazy var addProfilePicButton: UIButton = {
         let button = UIButton(type: .system)
         let image = #imageLiteral(resourceName: "plus_photo")
@@ -110,6 +113,7 @@ class RegistrationView: UIView {
     // MARK: - Handlers
     var didLoginButtonPressed: ((_ sender: UIButton) -> Void)?
     var didSignUpButtonPressed: ((_ sender: UIButton) -> Void)?
+    var didProfilePicButtonPressed: ((_ sender: UIButton) -> Void)?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -131,7 +135,7 @@ class RegistrationView: UIView {
         self.addSubview(self.addProfilePicButton)
         self.addSubview(self.mainStackView)
         self.addSubview(self.loginStackView)
-                
+        
         // Setup constraints
         NSLayoutConstraint.activate([
             
@@ -156,9 +160,32 @@ class RegistrationView: UIView {
         
         // Setup Button Handlers
         self.loginButton.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
+        self.addProfilePicButton.addTarget(self, action: #selector(addProfilePicButtonPressed(_:)), for: .touchUpInside)
     }
     
     @objc private func loginButtonPressed(_ sender: UIButton) {
         self.didLoginButtonPressed?(sender)
     }
+    
+    @objc private func addProfilePicButtonPressed(_ sender: UIButton) {
+        self.didProfilePicButtonPressed?(sender)
+    }
+    
+    private func setImageView() {
+        if !self.didSetProfileImageView {
+            self.addProfilePicButton.imageView?.contentMode = .scaleAspectFill
+            self.addProfilePicButton.layer.cornerRadius = self.addProfilePicButton.frame.height/2
+            self.addProfilePicButton.layer.borderColor = UIColor.white.cgColor
+            self.addProfilePicButton.layer.borderWidth = 1
+            self.addProfilePicButton.layer.masksToBounds = true
+            
+            self.didSetProfileImageView = true
+        }
+    }
+    
+    public func setProfileImage(_ image: UIImage) {
+        self.setImageView()
+        self.addProfilePicButton.setImage(image, for: .normal)
+    }
+    
 }
