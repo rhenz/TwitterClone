@@ -137,20 +137,8 @@ class LoginView: UIView {
             self.signUpStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             self.signUpStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
+    }
         
-        // Setup Button Handlers
-        self.loginButton.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
-        self.signUpButton.addTarget(self, action: #selector(signUpButtonPressed(_:)), for: .touchUpInside)
-    }
-    
-    @objc private func loginButtonPressed(_ sender: UIButton) {
-        self.didLoginButtonPressed?(sender)
-    }
-    
-    @objc private func signUpButtonPressed(_ sender: UIButton) {
-        self.didSignUpButtonPressed?(sender)
-    }
-    
     func getEmail() -> String? {
         return self.emailTextFieldView.textField.text
     }

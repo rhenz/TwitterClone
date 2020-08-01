@@ -62,22 +62,28 @@ class RegistrationView: UIView {
     
     lazy var emailTextFieldView: InputTextView = {
         let tf = InputTextView(iconImage: #imageLiteral(resourceName: "ic_mail_outline_white_2x-1"), placeholderText: Text.email.rawValue, keyboardType: .emailAddress)
+        tf.textField.autocapitalizationType = .none
         return tf
     }()
     
     lazy var passwordTextFieldView: InputTextView = {
         let tf = InputTextView(iconImage: #imageLiteral(resourceName: "ic_lock_outline_white_2x"), placeholderText: Text.password.rawValue, keyboardType: .default)
         tf.textField.isSecureTextEntry = true
+        tf.textField.textContentType = .oneTimeCode // hack solution to disable password autofill
+//        let passwordRules = UITextInputPasswordRules(descriptor: "required: lower; required: upper; required: digit; minlength: 6;")
+//        tf.textField.passwordRules = passwordRules
         return tf
     }()
     
     lazy var fullNameTextView: InputTextView = {
         let tf = InputTextView(iconImage: #imageLiteral(resourceName: "ic_person_outline_white_2x"), placeholderText: Text.fullName.rawValue, keyboardType: .default)
+        tf.textField.autocapitalizationType = .words
         return tf
     }()
     
     lazy var usernameTextView: InputTextView = {
         let tf = InputTextView(iconImage: #imageLiteral(resourceName: "ic_person_outline_white_2x"), placeholderText: Text.username.rawValue, keyboardType: .default)
+        tf.textField.autocapitalizationType = .none
         return tf
     }()
     
@@ -109,11 +115,6 @@ class RegistrationView: UIView {
         sv.spacing = 20
         return sv
     }()
-    
-    // MARK: - Handlers
-    var didLoginButtonPressed: ((_ sender: UIButton) -> Void)?
-    var didSignUpButtonPressed: ((_ sender: UIButton) -> Void)?
-    var didProfilePicButtonPressed: ((_ sender: UIButton) -> Void)?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -157,18 +158,6 @@ class RegistrationView: UIView {
             self.loginStackView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             self.loginStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
-        
-        // Setup Button Handlers
-        self.loginButton.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
-        self.addProfilePicButton.addTarget(self, action: #selector(addProfilePicButtonPressed(_:)), for: .touchUpInside)
-    }
-    
-    @objc private func loginButtonPressed(_ sender: UIButton) {
-        self.didLoginButtonPressed?(sender)
-    }
-    
-    @objc private func addProfilePicButtonPressed(_ sender: UIButton) {
-        self.didProfilePicButtonPressed?(sender)
     }
     
     private func setImageView() {
@@ -187,5 +176,4 @@ class RegistrationView: UIView {
         self.setImageView()
         self.addProfilePicButton.setImage(image, for: .normal)
     }
-    
 }

@@ -36,14 +36,18 @@ class LoginViewController: UIViewController {
     }
     
     func setupButtonHandlers() {
-        self.loginView.didLoginButtonPressed = { sender in
-            print("Login button pressed")
-        }
-        
-        self.loginView.didSignUpButtonPressed = { sender in
-            print("Signup button pressed")
-            let vc = RegistrationViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        self.loginView.loginButton.addTarget(self, action: #selector(loginButtonPressed(_:)), for: .touchUpInside)
+        self.loginView.signUpButton.addTarget(self, action: #selector(signUpButtonPressed(_:)), for: .touchUpInside)
+    }
+    
+    // MARK: - Selectors
+    @objc func loginButtonPressed(_ sender: UIButton) {
+        print("Login button pressed")
+    }
+    
+    @objc func signUpButtonPressed(_ sender: UIButton) {
+        print("Signup button pressed")
+        let vc = RegistrationViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
