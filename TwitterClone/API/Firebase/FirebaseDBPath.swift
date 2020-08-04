@@ -11,3 +11,7 @@ import Foundation
 enum FirebaseDBPath {
     static let user = "User"
 }
+
+enum FirebaseStoragePath {
+    static let profilePicture = "ProfilePicture"
+}

@@ -13,7 +13,7 @@ struct UserRegistrationModel: Encodable {
     let password: String
     let fullName: String
     let username: String
-//    let image: UIImage?
+    let imageData: Data?
     
     var childValues: [String: Any] {
         return [

@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import SVProgressHUD
 
 class RegistrationViewController: UIViewController {
 
@@ -56,7 +55,8 @@ class RegistrationViewController: UIViewController {
             let password = try v.passwordTextFieldView.textField.validatedText(validationType: .password)
             let fullName = try v.fullNameTextView.textField.validatedText(validationType: .fullName)
             let username = try v.usernameTextView.textField.validatedText(validationType: .username)
-            let user = UserRegistrationModel(email: email, password: password, fullName: fullName, username: username)
+            let image = self.selectedImage?.jpegData(compressionQuality: 0.3)
+            let user = UserRegistrationModel(email: email, password: password, fullName: fullName, username: username, imageData: image)
             self.registerUser(user: user)
         } catch let error as ValidationError {
             showAlert(message: error.message)
